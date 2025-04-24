@@ -5,26 +5,30 @@
     text-decoration: none;
     font-family: 'Roboto', sans-serif;
 }
-
-body{
+body {
     background-image: url(../images/fondo3.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
+    min-height: 90vh; /* Asegura que el body ocupe al menos toda la altura de la pantalla */
+    display: flex; /* Activa flexbox */
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    padding: 20px; /* Espacio alrededor para dispositivos móviles */
 }
 
-main{
+main {
     width: 100%;
+    max-width: 1200px; /* Puedes ajustar este valor según necesites */
+    margin: 0 auto; /* Centra el main horizontalmente */
     padding: 20px;
-    margin: auto;
-    margin-top: 100px;
 }
 
-.contenedor__todo{
+.contenedor__todo {
     width: 100%;
     max-width: 800px;
-    margin: auto;
+    margin: 0 auto; /* Centra horizontalmente */
     position: relative;
 }
 

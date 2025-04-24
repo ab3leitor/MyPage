@@ -1,6 +1,6 @@
 <?php
 
- $conexion = mysqli_connect("localhost", "root", "", "login-register-db");
+ $conexion = mysqli_connect("localhost", "root", "", "intranet v1.0");
 
  if($conexion === false){
      die("ERROR EN LA CONEXION" . mysqli_connect_error());

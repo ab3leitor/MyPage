@@ -1,31 +1,25 @@
 <?php
-//Se inicia la sesion
+// Iniciar sesión y configurar headers de seguridad
 session_start();
-//Formula para que no se salten el login
+header("X-Frame-Options: DENY");
+header("X-Content-Type-Options: nosniff");
+
+// Verificar autenticación
 if (!isset($_SESSION['usuario'])) {
-  echo '
-      <script>
-        alert("Por favor debes iniciar sesion");
-        window.location = "index.php";
-      </script>
-      ';
-  //Se destruye la sesion
-  session_destroy();
-  //El codigo muere aqui si no se inicia sesion
-  die();
+  header('Location: index.php');
+  exit('<script>alert("Por favor debes iniciar sesión");</script>');
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
 <head>
   <meta charset="utf-8">
-  <title> Menú </title>
-  <!--Enlace de la hoja de estilo -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Menú - Treyak</title>
   <link rel="stylesheet" href="css/sideBar.css">
-  <!--Enlace de los iconos de Box icons-->
   <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
-  <meta name="viewport" content="width = device-width,  initial-scale = 1">
 </head>
 
 <body>
@@ -131,7 +125,7 @@ if (!isset($_SESSION['usuario'])) {
         <!--Icono del item-->
         <div>
           <a href="php/cerrar_sesion.php"><i class='bx bx-log-out' id="log_out"></i></a>
-          
+
         </div>
       </div>
     </div>

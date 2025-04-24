@@ -61,7 +61,7 @@ if (isset($_SESSION['usuario'])) {
 
     </main>
 
-    <script src="js/script.js"></script>
+    <script src="js/animacionCajas.js"></script>
 </body>
 
 </html>
