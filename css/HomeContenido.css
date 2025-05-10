@@ -1,0 +1,130 @@
+/*Fuente de Google*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* contenido general de la pagina */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    background: url(../images/FondoContenido.jpg);
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    min-height: 150vh;
+    min-width: 110vh;
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Ajusta el último valor (0.5) para más/menos oscuridad */
+    z-index: -1;
+}
+
+.home_contenido {
+    position: relative;
+    min-height: 150vh;
+    width: calc(100% - 140px);
+    left: 78px;
+    transition: all 0.5s ease;
+}
+
+.home_contenido .text {
+    font-size: 25px;
+    font-weight: 500;
+    color: #1d1b31;
+    margin-top: 12px;
+}
+
+.sidebar.sidebar.active~.home_contenido {
+    width: calc(95% - 175px);
+    left: 240px;
+}
+
+.contenido {
+    position: absolute;
+    height: 90%;
+    width: 90%;
+    left: 90px;
+    margin: 1%;
+    padding: 1%;
+}
+
+:root {
+    --primary-color: #4e73df;
+    --secondary-color: #1cc88a;
+    --warning-color: #f6c23e;
+    --danger-color: #e74a3b;
+    --dark-color: #5a5c69;
+    --light-color: #f8f9fc;
+    --text-color: #333;
+    --border-color: #e3e6f0;
+}
+
+.welcome {
+    margin-top: 30px;
+    display: flex;
+    color: #e3e6f0;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+}
+
+.welcome-text {
+    flex: 1;
+}
+
+.Profile {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.circleP {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+#fotoP {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.textP {
+    font-weight: bold;
+    text-align: right;
+}
+
+.vistazo {
+    margin: 10px 0 50px 0;
+    display: flex;
+    color: #e3e6f0;
+    align-items: center;
+    justify-content: center;
+    position: relative; /* Necesario para posicionar la línea */
+    padding-bottom: 15px; /* Espacio para la línea */
+}
+
+.vistazo::after {
+    content: "";
+    position: absolute;
+    bottom: 0px; /* Ajusta la posición vertical */
+    left: 25%;
+    right: 25%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+    /* Alternativa sólida: background: var(--primary-color); */
+}
+

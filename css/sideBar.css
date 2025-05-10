@@ -1,14 +1,6 @@
 /*Fuente de Google*/
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-/* contenido general de la pagina */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-}
-
 /* Barra lateral */
 .sidebar {
   position: fixed;
@@ -19,6 +11,8 @@
   background: #11101d;
   padding: 6 px 14 px;
   transition: all 0.5s ease;
+  border-top-right-radius: 15px;  /* Radio superior derecho */
+  border-bottom-right-radius: 15px; /* Radio inferior derecho */
 }
 
 .sidebar.active {
@@ -38,6 +32,7 @@
 
 .sidebar.active .logo_content .logo {
   opacity: 1;
+  margin-left: 20px;
   pointer-events: none;
 }
 
@@ -54,7 +49,7 @@
   position: absolute;
   color: #fff;
   top: 3px;
-  left: 40%;
+  left: 45%;
   font-size: 30px;
   height: 50px;
   width: 50px;
@@ -67,17 +62,25 @@
   left: 90%;
 }
 
-.sidebar ul {
-  margin-top: 20px;
+.sidebar.active ul {
+ align-content: center;  
+ margin-left: 3%;
+}
+.sidebar ul{
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Espacio uniforme entre elementos li */
+  padding: 0 8px; /* Ajuste opcional para alineación */
 }
 
 .sidebar ul li {
   position: relative;
   height: 50px;
   width: 100%;
-  margin: 0 5px;
+  margin: 0; /* Resetea márgenes si usas gap */
   list-style: none;
   line-height: 50px;
+  
 }
 
 .sidebar ul li .tooltip {
@@ -107,6 +110,9 @@
   opacity: 1;
   top: 50%;
 }
+.sidebar ul li:first-child {
+  margin-top: 0; /* Elimina margen superior del buscador */
+}
 
 .sidebar ul li input {
   position: absolute;
@@ -121,6 +127,11 @@
   padding-left: 50px;
   font-size: 18px;
   color: #fff;
+  transition: all 0.3s ease;
+}
+.sidebar ul li input:focus {
+  background: #2a2845;
+  left: 2%;
 }
 
 .sidebar.active ul li input {
@@ -137,7 +148,11 @@
 
 .sidebar ul li .bx-search:hover {
   background: #fff;
-  color: 1d1b31;
+  color: #1d1b31;
+}
+.sidebar.active ul li .bx-search:hover{
+  background: #1d1b31;
+  color: hsl(0, 0%, 100%);
 }
 
 .sidebar ul li a {
@@ -158,6 +173,9 @@
 .sidebar ul li a:hover {
   color: #11101d;
   background: #fff;
+  
+  transform: translateY(-2px); /* Efecto sutil de elevación */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Opcional: sombra para profundidad */
 }
 
 .sidebar ul li i {
@@ -234,8 +252,22 @@
 
 .perfil #log_out {
   position: absolute;
+  bottom: 15px;
+  left: 47%;
+  transform: translateX(-50%);
+  min-width: 50px;
+  line-height: 50px;
+  font-size: 20px;
+  border-radius: 12px;
+  text-align: center;
+  color: #fff;
+  transition: all 0.3s ease;
+  background: #1d1b31;
+}
+.sidebar.active .perfil #log_out{
+  position: absolute;
   bottom: 5px;
-  left: 50%;
+  left: 47%;
   transform: translateX(-50%);
   min-width: 50px;
   line-height: 50px;
@@ -251,21 +283,18 @@
   left: 88%;
 }
 
-.home_contenido{
-  position: absolute;
-  height: 100%;
-  width: calc(100% - 240px);
-  left: 78px;
+/* Línea divisoria */
+.sidebar ul .divider {
+  height: 1px;
+  width: 70%;
+  margin: 2px auto;
+  background: rgba(255, 255, 255, 0.2); /* Color claro con transparencia */
   transition: all 0.5s ease;
 }
-.home_contenido  .text{
-  font-size: 25px;
-  font-weight: 500;
-  color: #1d1b31;
-  margin-top: 12px;
+
+.sidebar.active ul .divider {
+  width: 90%; /* Ajuste cuando el sidebar está expandido */
 }
-.sidebar.sidebar.active~.home_contenido{
-  width: calc(100% - 240px);
-  left: 240px;
+.sidebar ul li:hover + .divider {
+  background: rgba(255, 255, 255, 0.4);
 }
- 

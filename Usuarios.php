@@ -23,11 +23,12 @@ if (!isset($_SESSION['usuario'])) {
   <title> Lista de usuarios </title>
   <!--Enlace de la hoja de estilo -->
   <link rel="stylesheet" href="css/sideBar.css">
+  <link rel="stylesheet" href="css/HomeContenido.css">
   <!--Enlace de los iconos de Box icons-->
   <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
   <meta name="viewport" content="width = device-width,  initial-scale = 1">
   <script type="text/javascript">
-    function confirmar(){
+    function confirmar() {
       return confirm('¿Estas seguro?, se eliminaran los datos');
     }
   </script>
@@ -57,12 +58,13 @@ if (!isset($_SESSION['usuario'])) {
         <input type="text" placeholder="Search..." name="" value="">
         <span class="tooltip">Search</span>
       </li>
+      <div class="divider"></div>
       <!--Items de la Lista-->
       <li>
         <!--Inicio-->
-        <a href="#">
+        <a href="Inicio.php">
           <!--Icono del item-->
-          <i class='bx bxs-home-smile bx-tada'></i>
+          <i class='bx bxs-home-smile'></i>
           <!--Resalta y ocupa un espacio segun el texto-->
           <span class="links_name">Inicio</span>
         </a>
@@ -70,9 +72,9 @@ if (!isset($_SESSION['usuario'])) {
       </li>
       <li>
         <!--User-->
-        <a href="#">
+        <a href="Usuarios.php">
           <!--Icono del item-->
-          <i class='bx bxs-user bx-flashing'></i>
+          <i class='bx bxs-user'></i>
           <!--Resalta y ocupa un espacio segun el texto-->
           <span class="links_name">User</span>
         </a>
@@ -81,9 +83,9 @@ if (!isset($_SESSION['usuario'])) {
       <!--Mensajes-->
       <li>
         <!--Redirecion a otra pagina-->
-        <a href="#">
+        <a href="Mensajes.php">
           <!--Icono del item-->
-          <i class='bx bx-chat bx-flashing'></i>
+          <i class='bx bx-conversation'></i>
           <!--Resalta y ocupa un espacio segun el texto-->
           <span class="links_name">Mensajes</span>
         </a>
@@ -92,9 +94,9 @@ if (!isset($_SESSION['usuario'])) {
       <!--Administrador de archivos-->
       <li>
         <!--Redirecion a otra pagina-->
-        <a href="#">
+        <a href="Documentos.php">
           <!--Icono del item-->
-          <i class='bx bxs-folder-open bx-tada'></i>
+          <i class='bx bxs-folder-open'></i>
           <!--Resalta y ocupa un espacio segun el texto-->
           <span class="links_name">Archivos</span>
         </a>
@@ -103,9 +105,9 @@ if (!isset($_SESSION['usuario'])) {
       <!--Items de la Lista-->
       <li>
         <!--Configuracion-->
-        <a href="#">
+        <a href="Configuracion.php">
           <!--Icono del item-->
-          <i class='bx bx-cog bx-spin'></i>
+          <i class='bx bxs-cog'></i>
           <!--Resalta y ocupa un espacio segun el texto-->
           <span class="links_name">Configuracion</span>
         </a>
@@ -114,9 +116,9 @@ if (!isset($_SESSION['usuario'])) {
       <!--Items de la Lista-->
       <li>
         <!--Ayuda-->
-        <a href="#">
+        <a href="Ayuda.php">
           <!--Icono del item-->
-          <i class='bx bxs-help-circle bx-spin'></i>
+          <i class='bx bxs-help-circle'></i>
           <!--Resalta y ocupa un espacio segun el texto-->
           <span class="links_name">Ayuda</span>
         </a>
@@ -136,7 +138,7 @@ if (!isset($_SESSION['usuario'])) {
         <!--Icono del item-->
         <div>
           <a href="php/cerrar_sesion.php"><i class='bx bx-log-out' id="log_out"></i></a>
-          
+
         </div>
       </div>
     </div>
@@ -158,50 +160,50 @@ if (!isset($_SESSION['usuario'])) {
   <?php
   include("php/conexion_be.php");
   /* Select * from usuarios */
-  $sql="select * from usuario";
-  $resultado=mysqli_query($conexion,$sql);
+  $sql = "select * from usuario";
+  $resultado = mysqli_query($conexion, $sql);
   ?>
   <!--Aqui ya comienza el segmento de la pagina-->
   <div class="home_contenido">
-      <h1>Registro de usuarios</h1>
+    <h1>Registro de usuarios</h1>
     <form action="POST">
       <table>
         <thead>
-        <tr>
-          <th>ID</th>
-          <th>Nombre</th>
-          <th>Usuario</th>
-          <th>Correo</th>
-        </tr>
-      </thead>
-      <tbody>
-        <?php
-        while ($filas = mysqli_fetch_assoc($resultado)) {
-        ?>
           <tr>
-            <td>
-              <?php echo $filas['id'] ?>
-            </td>
-            <td>
-              <?php echo $filas['nombreCompleto'] ?>
-            </td>
-            <td>
-              <?php echo $filas['usuario'] ?>
-            </td>
-            <td>
-              <?php echo $filas['correoElectronico'] ?>
-            </td>
-            <td>
-              <?php echo "<a href= 'editarUsuario.php?id=".$filas['id']."'>Editar</a>"; ?>
-              <?php echo "<a href= 'php/eliminarUsuario.php?id=".$filas['id']."' onclick='return confirmar()'>Eliminar</a>"; ?>
-            </td>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Usuario</th>
+            <th>Correo</th>
           </tr>
-        <?php
-        }
-        ?>
-      </tbody>
+        </thead>
+        <tbody>
+          <?php
+          while ($filas = mysqli_fetch_assoc($resultado)) {
+          ?>
+            <tr>
+              <td>
+                <?php echo $filas['id'] ?>
+              </td>
+              <td>
+                <?php echo $filas['nombreCompleto'] ?>
+              </td>
+              <td>
+                <?php echo $filas['usuario'] ?>
+              </td>
+              <td>
+                <?php echo $filas['correoElectronico'] ?>
+              </td>
+              <td>
+                <?php echo "<a href= 'editarUsuario.php?id=" . $filas['id'] . "'>Editar</a>"; ?>
+                <?php echo "<a href= 'php/eliminarUsuario.php?id=" . $filas['id'] . "' onclick='return confirmar()'>Eliminar</a>"; ?>
+              </td>
+            </tr>
+          <?php
+          }
+          ?>
+        </tbody>
       </table>
-      
+
     </form>
   </div>
 
