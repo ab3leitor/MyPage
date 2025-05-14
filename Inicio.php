@@ -85,13 +85,13 @@ $nombreCompleto_db = $_SESSION['nombreCompleto'];
       <!--Administrador de archivos-->
       <li>
         <!--Redirecion a otra pagina-->
-        <a href="Documentos.php">
+        <a href="Foro.php">
           <!--Icono del item-->
           <i class='bx bxs-folder-open'></i>
           <!--Resalta y ocupa un espacio segun el texto-->
           <span class="links_name">Archivos</span>
         </a>
-        <span class="tooltip">Archivos</span>
+        <span class="tooltip">Foro</span>
       </li>
       <!--Items de la Lista-->
       <li>
@@ -327,36 +327,35 @@ $nombreCompleto_db = $_SESSION['nombreCompleto'];
         </div>
       </div>
     </div>
-      <footer class="user-footer">
-        <div class="footer-content">
-          <div class="footer-links">
-            <a href="#" class="footer-link">Inicio</a>
-            <a href="#" class="footer-link">Términos</a>
-            <a href="#" class="footer-link">Privacidad</a>
-            <a href="#" class="footer-link">Contacto</a>
-          </div>
-
-          <div class="footer-social">
-            <a href="#" class="social-icon" title="Facebook">
-              <i class='bx bxl-facebook' style='color:#fffafa'  ></i>
-            </a>
-            <a href="#" class="social-icon" title="Twitter">
-              <i class='bx bxl-twitter' style='color:#fffafa' ></i>
-            </a>
-            <a href="#" class="social-icon" title="Instagram">
-              <i class='bx bxl-instagram' style='color:#fffafa' ></i>
-            </a>
-            <a href="#" class="social-icon" title="LinkedIn">
-              <i class='bx bxl-linkedin' style='color:#fffafa' ></i>
-            </a>
-            <a href="#" class="social-icon" title="Whatsapp">
-              <i class='bx bxl-whatsapp' style='color:#fffafa' ></i>
-            </a>
-          </div>
-
-          <p class="footer-copyright">© 2023 NombreApp. Todos los derechos reservados.</p>
+    <footer class="user-footer">
+      <div class="footer-content">
+        <div class="footer-links">
+          <a href="#" class="footer-link">Términos</a>
+          <a href="#" class="footer-link">Privacidad</a>
+          <a href="#" class="footer-link">Contacto</a>
         </div>
-      </footer>
+
+        <div class="footer-social">
+          <a href="https://www.facebook.com/abel.arriagadaurriola" class="social-icon" title="Facebook">
+            <i class='bx bxl-facebook' style='color:#fffafa'></i>
+          </a>
+          <a href="#" class="social-icon" title="Twitter">
+            <i class='bx bxl-twitter' style='color:#fffafa'></i>
+          </a>
+          <a href="https://www.instagram.com/abelardoahhaaha/" class="social-icon" title="Instagram">
+            <i class='bx bxl-instagram' style='color:#fffafa'></i>
+          </a>
+          <a href="https://cl.linkedin.com/in/abel-arriagada-urriola-9aaa19287" class="social-icon" title="LinkedIn">
+            <i class='bx bxl-linkedin' style='color:#fffafa'></i>
+          </a>
+          <a href="https://wa.me/<+56956025318>?text=<Hola muy buenas, vengo a saludar>" class="social-icon" title="Whatsapp">
+            <i class='bx bxl-whatsapp' style='color:#fffafa'></i>
+          </a>
+        </div>
+
+        <p class="footer-copyright">© 2023 NombreApp. Todos los derechos reservados.</p>
+      </div>
+    </footer>
   </div>
   <script>
     let btn = document.querySelector("#btn");

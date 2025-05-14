@@ -136,7 +136,7 @@ $nombreCompleto_db = $_SESSION['nombreCompleto'];
   <!--Aqui ya comienza el segmento de la pagina-->
   <div class="home_contenido">
     <div class="contenido">
-
+    
     </div>
       <footer class="user-footer">
         <div class="footer-content">

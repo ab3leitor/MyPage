@@ -1,0 +1,673 @@
+/* ==================== */
+/* ESTILOS GENERALES */
+/* ==================== */
+
+/* Estilos base y reset */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f3f5;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #bdc3c7;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #95a5a6;
+}
+
+.highlight {
+    background-color: #f1c40f;
+    color: #2c3e50;
+    padding: 0 2px;
+    border-radius: 3px;
+}
+
+/* ==================== */
+/* CONTENEDOR PRINCIPAL */
+/* ==================== */
+
+.chat-container {
+    display: flex;
+    height: calc(100vh - 150px);
+    background-color: #f5f7fa;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+/* ==================== */
+/* LISTA DE CONVERSACIONES */
+/* ==================== */
+
+.conversation-list {
+    width: 300px;
+    background-color: #ffffff;
+    border-right: 1px solid #e1e5eb;
+    overflow-y: auto;
+}
+
+/* Barra de búsqueda */
+.search-bar {
+    padding: 15px;
+    background-color: #f8f9fa;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 10px 15px 10px 35px;
+    border: 1px solid #e1e5eb;
+    border-radius: 20px;
+    font-size: 14px;
+    outline: none;
+    background-color: #f1f3f5;
+    transition: all 0.3s;
+}
+
+.search-bar input:focus {
+    background-color: #ffffff;
+    border-color: #3498db;
+}
+
+.search-bar i {
+    position: absolute;
+    top: 30px;
+    color: #7d8b99;
+}
+
+.clear-search {
+    position: absolute;
+    right: 25px;
+    top: 25px;
+    color: #7d8b99;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.clear-search:hover {
+    color: #e74c3c;
+}
+
+/* Items de conversación */
+.conversation-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    border-bottom: 1px solid #f1f3f5;
+}
+
+.conversation-item:hover {
+    background-color: #f8f9fa;
+}
+
+.conversation-item.active {
+    background-color: #e3f2fd;
+}
+
+.conversation-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    margin-right: 12px;
+    font-size: 16px;
+}
+
+.conversation-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.conversation-name {
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.conversation-preview {
+    font-size: 13px;
+    color: #7d8b99;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* ==================== */
+/* ÁREA DE CHAT PRINCIPAL */
+/* ==================== */
+
+.chat-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+}
+
+.chat-header {
+    padding: 15px 20px;
+    border-bottom: 1px solid #e1e5eb;
+    background-color: #f8f9fa;
+    position: sticky;
+    top: 0;
+    z-index: 5;
+}
+
+.chat-header h2 {
+    margin: 0;
+    font-size: 18px;
+    color: #2c3e50;
+}
+
+/* ==================== */
+/* LISTA DE MENSAJES */
+/* ==================== */
+
+.messages-list {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    background-color: #f5f7fa;
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyMDQsIDIwNCwgMjA0LCAwLjEpIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI3BhdHRlcm4pIi8+PC9zdmc+');
+}
+
+/* Mensajes individuales */
+.message {
+    max-width: 70%;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.message.sent {
+    margin-left: auto;
+}
+
+.message.received {
+    margin-right: auto;
+}
+
+.message-text {
+    padding: 12px 15px;
+    border-radius: 18px;
+    font-size: 14px;
+    line-height: 1.4;
+    position: relative;
+    word-wrap: break-word;
+}
+
+.message.sent .message-text {
+    background-color: #3498db;
+    color: white;
+    border-top-right-radius: 5px;
+}
+
+.message.received .message-text {
+    background-color: #ffffff;
+    color: #2c3e50;
+    border-top-left-radius: 5px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.message-info {
+    display: flex;
+    align-items: center;
+    font-size: 11px;
+    color: #95a5a6;
+    margin-top: 5px;
+    padding: 0 5px;
+}
+
+.message.sent .message-info {
+    justify-content: flex-end;
+}
+
+.message.received .message-info {
+    justify-content: flex-start;
+}
+
+.message-info i {
+    margin-left: 5px;
+    color: #3498db;
+}
+
+/* Mensajes de archivos */
+.message-file {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    margin-bottom: 5px;
+}
+
+.message-file a {
+    color: inherit;
+    text-decoration: none;
+    word-break: break-all;
+}
+
+.message-file a:hover {
+    text-decoration: underline;
+}
+
+.message-file i {
+    font-size: 24px;
+    flex-shrink: 0;
+}
+
+/* ==================== */
+/* FORMULARIO DE MENSAJE */
+/* ==================== */
+
+#messageForm {
+    display: flex;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-top: 1px solid #e1e5eb;
+    position: sticky;
+    bottom: 0;
+}
+
+#messageForm textarea {
+    flex: 1;
+    padding: 12px 15px;
+    border: 1px solid #e1e5eb;
+    border-radius: 20px;
+    resize: none;
+    outline: none;
+    font-size: 14px;
+    max-height: 120px;
+    transition: border-color 0.3s;
+}
+
+#messageForm textarea:focus {
+    border-color: #3498db;
+}
+
+#messageForm button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#messageForm button:hover {
+    background-color: #2980b9;
+}
+
+/* Botón de subir archivos */
+.message-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.upload-btn {
+    cursor: pointer;
+    background: #3498db;
+    color: white;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s;
+}
+
+.upload-btn:hover {
+    background: #2980b9;
+}
+
+/* ==================== */
+/* SECCIÓN DEL FORO */
+/* ==================== */
+
+.forum-section {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    width: 350px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    max-height: 500px;
+}
+
+.forum-header {
+    padding: 15px;
+    background: #3498db;
+    color: white;
+    border-radius: 10px 10px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.forum-header h3 {
+    margin: 0;
+    font-size: 16px;
+}
+
+#closeForumBtn {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.forum-messages {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    border-bottom: 1px solid #eee;
+}
+
+#forumMessageForm {
+    display: flex;
+    padding: 10px;
+    gap: 10px;
+}
+
+#forumMessageForm textarea {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    resize: none;
+}
+
+#forumMessageForm button {
+    background: #3498db;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 0 15px;
+    cursor: pointer;
+}
+
+/* Mensajes del foro */
+.forum-message {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    background: #f5f5f5;
+}
+
+.forum-message.current-user {
+    background: #e3f2fd;
+}
+
+.forum-message-author {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.forum-message-content {
+    margin-bottom: 5px;
+}
+
+.forum-message-time {
+    font-size: 12px;
+    color: #666;
+    text-align: right;
+    margin-top: 5px;
+}
+
+/* ==================== */
+/* BOTÓN FLOTANTE DEL FORO */
+/* ==================== */
+
+.floating-forum-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #3498db;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 10px 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 999;
+}
+
+.floating-forum-btn:hover {
+    background: #2980b9;
+}
+
+/* ==================== */
+/* ESTADOS Y MENSAJES ESPECIALES */
+/* ==================== */
+
+.empty-state,
+.error-state,
+.empty-conversations,
+.empty-search,
+.empty-forum,
+.error-forum {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #95a5a6;
+    text-align: center;
+    padding: 20px;
+}
+
+.empty-state i,
+.error-state i,
+.empty-conversations i,
+.empty-search i {
+    font-size: 50px;
+    margin-bottom: 15px;
+    opacity: 0.5;
+}
+
+.empty-state p,
+.error-state p,
+.empty-conversations p,
+.empty-search p {
+    margin: 0;
+    font-size: 16px;
+}
+
+.error-state {
+    color: #e74c3c;
+}
+
+.error-state small {
+    display: block;
+    margin-top: 10px;
+    font-size: 0.8rem;
+    color: #777;
+}
+
+.empty-forum {
+    color: #666;
+}
+
+.error-forum {
+    color: #e74c3c;
+}
+
+/* ==================== */
+/* INDICADORES DE CARGA */
+/* ==================== */
+
+.loading-spinner {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    color: #3498db;
+}
+
+.loading-spinner i {
+    font-size: 24px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.upload-indicator {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(52, 152, 219, 0.9);
+    color: white;
+    padding: 8px;
+    text-align: center;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+.loading-button {
+    position: fixed;
+    bottom: 70px;
+    right: 20px;
+    padding: 10px 15px;
+    background: #2196F3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 1000;
+}
+
+/* ==================== */
+/* NOTIFICACIONES */
+/* ==================== */
+
+.notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 12px 20px;
+    border-radius: 5px;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 1000;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: notificationEnter 0.3s ease-out forwards;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.notification.success {
+    background: #4CAF50;
+}
+
+.notification.error {
+    background: #F44336;
+}
+
+.notification.fade-out {
+    animation: notificationExit 0.3s ease-out forwards;
+}
+
+@keyframes notificationEnter {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes notificationExit {
+    to {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
+
+/* Notificación de descarga */
+.download-notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #4CAF50;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    z-index: 1000;
+    animation: slide-in 0.3s ease-out;
+}
+
+.download-notification i {
+    font-size: 24px;
+}
+
+.download-notification.fade-out {
+    animation: fade-out 0.5s ease-out forwards;
+}
+
+@keyframes slide-in {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
+}
+
+@keyframes fade-out {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+/* ==================== */
+/* ESTILOS PARA DOCUMENTOS */
+/* ==================== */
+
+.document-message {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 0;
+}
+
+.document-message a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.document-message a:hover {
+    color: #2196F3;
+    text-decoration: underline;
+}

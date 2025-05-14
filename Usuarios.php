@@ -1,7 +1,5 @@
 <?php
-//Se inicia la sesion
 session_start();
-//Formula para que no se salten el login
 if (!isset($_SESSION['usuario'])) {
   echo '
       <script>
@@ -9,33 +7,45 @@ if (!isset($_SESSION['usuario'])) {
         window.location = "index.php";
       </script>
       ';
-  //Se destruye la sesion
   session_destroy();
-  //El codigo muere aqui si no se inicia sesion
   die();
 }
+
+include("php/conexion_be.php");
+$sql = "select * from usuario";
+$resultado = mysqli_query($conexion, $sql);
 ?>
+
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="es">
 
 <head>
   <meta charset="utf-8">
-  <title> Lista de usuarios </title>
-  <!--Enlace de la hoja de estilo -->
+  <title>Lista de usuarios | Treyak</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Enlaces CSS -->
   <link rel="stylesheet" href="css/sideBar.css">
   <link rel="stylesheet" href="css/HomeContenido.css">
-  <!--Enlace de los iconos de Box icons-->
+  <link rel="stylesheet" href="css/FooterStyle.css">
+  <link rel="stylesheet" href="css/UsuariosStyle.css">
   <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
-  <meta name="viewport" content="width = device-width,  initial-scale = 1">
+
+
   <script type="text/javascript">
     function confirmar() {
-      return confirm('¿Estas seguro?, se eliminaran los datos');
+      return confirm('¿Estás seguro de eliminar este usuario? Esta acción no se puede deshacer.');
+    }
+
+    // Función para expandir/contraer texto largo
+    function toggleText(element) {
+      element.classList.toggle('long-text');
     }
   </script>
 </head>
 
 <body>
-  <!--Div que contiene el sidebar-->
+  <!-- Sidebar (se mantiene igual) -->
   <div class="sidebar">
     <!--Div que contiene la parte del logo-->
     <div class="logo_content">
@@ -94,13 +104,13 @@ if (!isset($_SESSION['usuario'])) {
       <!--Administrador de archivos-->
       <li>
         <!--Redirecion a otra pagina-->
-        <a href="Documentos.php">
+        <a href="Foro.php">
           <!--Icono del item-->
           <i class='bx bxs-folder-open'></i>
           <!--Resalta y ocupa un espacio segun el texto-->
           <span class="links_name">Archivos</span>
         </a>
-        <span class="tooltip">Archivos</span>
+        <span class="tooltip">Foro</span>
       </li>
       <!--Items de la Lista-->
       <li>
@@ -143,7 +153,80 @@ if (!isset($_SESSION['usuario'])) {
       </div>
     </div>
   </div>
+
+  <!-- Contenido principal - Diseño mejorado -->
+  <div class="home_contenido">
+    <div class="Gestion">
+      <h1>Gestión de Usuarios</h1>
+    </div>
+    <div class="users-grid">
+      <?php while ($filas = mysqli_fetch_assoc($resultado)): ?>
+        <div class="user-card">
+          <div class="user-info">
+            <div>
+              <i class='bx bx-id-card'></i>
+              <span><strong>ID:</strong> <?php echo htmlspecialchars($filas['id']); ?></span>
+            </div>
+            <div>
+              <i class='bx bx-user'></i>
+              <span><strong>Nombre:</strong> <?php echo htmlspecialchars($filas['nombreCompleto']); ?></span>
+            </div>
+            <div>
+              <i class='bx bx-at'></i>
+              <span><strong>Usuario:</strong> <?php echo htmlspecialchars($filas['usuario']); ?></span>
+            </div>
+            <div>
+              <i class='bx bx-envelope'></i>
+              <span class="long-text" onclick="toggleText(this)" title="Click para expandir/contraer">
+                <strong>Email:</strong> <?php echo htmlspecialchars($filas['correoElectronico']); ?>
+              </span>
+            </div>
+          </div>
+
+          <div class="user-actions">
+            <a href="editarUsuario.php?id=<?php echo $filas['id']; ?>" class="btn-action btn-edit">
+              <i class='bx bx-edit'></i> Editar
+            </a>
+            <a href="php/eliminarUsuario.php?id=<?php echo $filas['id']; ?>" class="btn-action btn-delete" onclick="return confirmar()">
+              <i class='bx bx-trash'></i> Eliminar
+            </a>
+          </div>
+        </div>
+      <?php endwhile; ?>
+    </div>
+    <footer class="user-footer">
+        <div class="footer-content">
+          <div class="footer-links">
+            <a href="#" class="footer-link">Términos</a>
+            <a href="#" class="footer-link">Privacidad</a>
+            <a href="#" class="footer-link">Contacto</a>
+          </div>
+
+          <div class="footer-social">
+            <a href="https://www.facebook.com/abel.arriagadaurriola" class="social-icon" title="Facebook">
+              <i class='bx bxl-facebook' style='color:#fffafa'  ></i>
+            </a>
+            <a href="#" class="social-icon" title="Twitter">
+              <i class='bx bxl-twitter' style='color:#fffafa' ></i>
+            </a>
+            <a href="https://www.instagram.com/abelardoahhaaha/" class="social-icon" title="Instagram">
+              <i class='bx bxl-instagram' style='color:#fffafa' ></i>
+            </a>
+            <a href="https://cl.linkedin.com/in/abel-arriagada-urriola-9aaa19287" class="social-icon" title="LinkedIn">
+              <i class='bx bxl-linkedin' style='color:#fffafa' ></i>
+            </a>
+            <a href="https://wa.me/<+56956025318>?text=<Hola muy buenas, vengo a saludar>" class="social-icon" title="Whatsapp">
+              <i class='bx bxl-whatsapp' style='color:#fffafa' ></i>
+            </a>
+          </div>
+
+          <p class="footer-copyright">© 2023 NombreApp. Todos los derechos reservados.</p>
+        </div>
+      </footer>
+  </div>
+
   <script>
+    // Script para el sidebar (se mantiene igual)
     let btn = document.querySelector("#btn");
     let sidebar = document.querySelector(".sidebar");
     let searchBtn = document.querySelector(".bx-search");
@@ -151,63 +234,11 @@ if (!isset($_SESSION['usuario'])) {
     btn.onclick = function() {
       sidebar.classList.toggle("active");
     }
+
     searchBtn.onclick = function() {
       sidebar.classList.toggle("active");
     }
   </script>
-
-
-  <?php
-  include("php/conexion_be.php");
-  /* Select * from usuarios */
-  $sql = "select * from usuario";
-  $resultado = mysqli_query($conexion, $sql);
-  ?>
-  <!--Aqui ya comienza el segmento de la pagina-->
-  <div class="home_contenido">
-    <h1>Registro de usuarios</h1>
-    <form action="POST">
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Usuario</th>
-            <th>Correo</th>
-          </tr>
-        </thead>
-        <tbody>
-          <?php
-          while ($filas = mysqli_fetch_assoc($resultado)) {
-          ?>
-            <tr>
-              <td>
-                <?php echo $filas['id'] ?>
-              </td>
-              <td>
-                <?php echo $filas['nombreCompleto'] ?>
-              </td>
-              <td>
-                <?php echo $filas['usuario'] ?>
-              </td>
-              <td>
-                <?php echo $filas['correoElectronico'] ?>
-              </td>
-              <td>
-                <?php echo "<a href= 'editarUsuario.php?id=" . $filas['id'] . "'>Editar</a>"; ?>
-                <?php echo "<a href= 'php/eliminarUsuario.php?id=" . $filas['id'] . "' onclick='return confirmar()'>Eliminar</a>"; ?>
-              </td>
-            </tr>
-          <?php
-          }
-          ?>
-        </tbody>
-      </table>
-
-    </form>
-  </div>
-
-
 </body>
 
 </html>

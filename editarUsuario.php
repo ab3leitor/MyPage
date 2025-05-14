@@ -1,7 +1,5 @@
 <?php
-//Se inicia la sesion
 session_start();
-//Formula para que no se salten el login
 if (!isset($_SESSION['usuario'])) {
   echo '
       <script>
@@ -9,28 +7,64 @@ if (!isset($_SESSION['usuario'])) {
         window.location = "index.php";
       </script>
       ';
-  //Se destruye la sesion
   session_destroy();
-  //El codigo muere aqui si no se inicia sesion
   die();
 }
+
+include("php/conexion_be.php");
+
+if (isset($_POST['enviar'])) {
+    $id = $_POST['id'];
+    $nombre = $_POST['nombre'];
+    $usuario = $_POST['usuario'];
+    $correo = $_POST['correo'];
+
+    $sql = "update usuario set nombreCompleto='".$nombre.
+      "', usuario='".$usuario."', correoElectronico='".$correo."' where id='".$id."'";
+    $resultado = mysqli_query($conexion, $sql);
+    
+    if ($resultado) {
+      echo "<script language='JavaScript'>
+                alert('Los datos se actualizaron correctamente');
+                location.assign('Usuarios.php');
+                </script>";
+    } else {
+      echo "<script language='JavaScript'>
+                alert('Los datos no se actualizaron correctamente');
+                location.assign('Usuarios.php');
+                </script>";
+    }
+    mysqli_close($conexion);
+} else {
+    $id = $_GET['id'];
+    $sql = "select * from usuario where id='".$id."'";
+    $resultado = mysqli_query($conexion, $sql);
+
+    $fila = mysqli_fetch_assoc($resultado);
+    $nombre = $fila["nombreCompleto"];
+    $usuario = $fila["usuario"];
+    $correo = $fila["correoElectronico"];
+
+    mysqli_close($conexion);
 ?>
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="es">
 
 <head>
   <meta charset="utf-8">
-  <title> Editar usuario </title>
-  <!--Enlace de la hoja de estilo menu -->
+  <title>Editar usuario | Treyak</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <!-- Enlaces CSS -->
   <link rel="stylesheet" href="css/sideBar.css">
   <link rel="stylesheet" href="css/HomeContenido.css">
-  <!--Enlace de los iconos de Box icons-->
+  <link rel="stylesheet" href="css/FooterStyle.css">
+  <link rel="stylesheet" href="css/EditarUsuario.css">
   <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
-  <meta name="viewport" content="width = device-width,  initial-scale = 1">
 </head>
 
 <body>
-  <!--Div que contiene el sidebar-->
+  <!-- Sidebar (se mantiene igual) -->
   <div class="sidebar">
     <!--Div que contiene la parte del logo-->
     <div class="logo_content">
@@ -89,13 +123,13 @@ if (!isset($_SESSION['usuario'])) {
       <!--Administrador de archivos-->
       <li>
         <!--Redirecion a otra pagina-->
-        <a href="Documentos.php">
+        <a href="Foro.php">
           <!--Icono del item-->
           <i class='bx bxs-folder-open'></i>
           <!--Resalta y ocupa un espacio segun el texto-->
           <span class="links_name">Archivos</span>
         </a>
-        <span class="tooltip">Archivos</span>
+        <span class="tooltip">Foro</span>
       </li>
       <!--Items de la Lista-->
       <li>
@@ -138,9 +172,71 @@ if (!isset($_SESSION['usuario'])) {
       </div>
     </div>
   </div>
-  <!-- Aqui se encuentra el script que permite que al clickear el boton del menu o el de buscar
-        se expanda la barra lateral -->
+
+  <!-- Contenido principal -->
+  <div class="home_contenido">
+    <div class="Gestion">
+    <h1>Editar Usuario</h1>
+    </div>
+    
+    <div class="edit-form">
+      <form action="<?= $_SERVER['PHP_SELF'] ?>" method="post">
+        <div class="form-group">
+          <label for="nombre">Nombre Completo:</label>
+          <input type="text" name="nombre" id="nombre" value="<?php echo htmlspecialchars($nombre); ?>" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="usuario">Nombre de Usuario:</label>
+          <input type="text" name="usuario" id="usuario" value="<?php echo htmlspecialchars($usuario); ?>" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="correo">Correo Electrónico:</label>
+          <input type="email" name="correo" id="correo" value="<?php echo htmlspecialchars($correo); ?>" required>
+        </div>
+        
+        <input type="hidden" name="id" value="<?php echo htmlspecialchars($id); ?>">
+        
+        <div class="form-actions">
+          <a href="Usuarios.php" class="btn btn-cancel">Cancelar</a>
+          <button type="submit" name="enviar" class="btn btn-submit">Guardar Cambios</button>
+        </div>
+      </form>
+    </div>
+    <footer class="user-footer">
+      <div class="footer-content">
+        <div class="footer-links">
+          <a href="#" class="footer-link">Términos</a>
+          <a href="#" class="footer-link">Privacidad</a>
+          <a href="#" class="footer-link">Contacto</a>
+        </div>
+
+        <div class="footer-social">
+          <a href="https://www.facebook.com/abel.arriagadaurriola" class="social-icon" title="Facebook">
+            <i class='bx bxl-facebook' style='color:#fffafa'></i>
+          </a>
+          <a href="#" class="social-icon" title="Twitter">
+            <i class='bx bxl-twitter' style='color:#fffafa'></i>
+          </a>
+          <a href="https://www.instagram.com/abelardoahhaaha/" class="social-icon" title="Instagram">
+            <i class='bx bxl-instagram' style='color:#fffafa'></i>
+          </a>
+          <a href="https://cl.linkedin.com/in/abel-arriagada-urriola-9aaa19287" class="social-icon" title="LinkedIn">
+            <i class='bx bxl-linkedin' style='color:#fffafa'></i>
+          </a>
+          <a href="https://wa.me/<+56956025318>?text=<Hola muy buenas, vengo a saludar>" class="social-icon" title="Whatsapp">
+            <i class='bx bxl-whatsapp' style='color:#fffafa'></i>
+          </a>
+        </div>
+
+        <p class="footer-copyright">© 2023 NombreApp. Todos los derechos reservados.</p>
+      </div>
+    </footer>
+  </div>
+
   <script>
+    // Script para el sidebar (se mantiene igual)
     let btn = document.querySelector("#btn");
     let sidebar = document.querySelector(".sidebar");
     let searchBtn = document.querySelector(".bx-search");
@@ -148,73 +244,11 @@ if (!isset($_SESSION['usuario'])) {
     btn.onclick = function() {
       sidebar.classList.toggle("active");
     }
+    
     searchBtn.onclick = function() {
       sidebar.classList.toggle("active");
     }
   </script>
-
-  <?php
-  include("php/conexion_be.php");
-  ?>
-  <?php
-  if (isset($_POST['enviar'])) {
-    /* Aqui entra cuando se presiona el boton de enviar */
-    $id = $_POST['id'];
-    $nombre = $_POST['nombre'];
-    $usuario = $_POST['usuario'];
-    $correo = $_POST['correo'];
-
-    /* Update usuarios set */
-    $sql = "update usuario set nombreCompleto='" . $nombre .
-      "', usuario='" . $usuario . "', correoElectronico='" . $correo . "' where id='" . $id . "'";
-    $resultado = mysqli_query($conexion, $sql);
-    /* Aqui se comprueba que la query se haya ejecutado correctamente o no */
-    if ($resultado) {
-      echo "<script language='JavaScript'>
-                alert('Los datos se actualizaron correctamente');
-                location.assign('index.php');
-                </script>";
-    } else {
-      echo "<script language='JavaScript'>
-                alert('Los datos no se actualizaron correctamente');
-                location.assign('index.php');
-                </script>";
-    }
-    mysqli_close($conexion);
-  } else {
-    /* Aqui entra si no se ha presionado el boton enviar */
-    $id = $_GET['id'];
-    $sql = "select * from usuario where id='" . $id . "'";
-    $resultado = mysqli_query($conexion, $sql);
-
-    $fila = mysqli_fetch_assoc($resultado);
-    $nombre = $fila["nombreCompleto"];
-    $usuario = $fila["usuario"];
-    $correo = $fila["correoElectronico"];
-
-    mysqli_close($conexion);
-  ?>
-    <!--Aqui ya comienza el segmento de la pagina-->
-    <div class="home_contenido">
-      <h1>Editar usuario</h1>
-      <form action="<?= $_SERVER['PHP_SELF'] ?>" method="post">
-        <!-- input nombre -->
-        <label for="nombre" class="formulario_label">Nombre: </label>
-        <input type="text" class="formulario_input" name="nombre" id="nombre" value="<?php echo $nombre; ?>">
-        <!-- input usuario -->
-        <label for="usuario" class="formulario_label">Usuario: </label>
-        <input type="text" class="formulario_input" name="usuario" id="usuario" value="<?php echo $usuario; ?>">
-        <!-- input  correo-->
-        <label for="correo" class="formulario_label">Correo Electronico: </label></td>
-        <input type="email" class="formulario_input" name="correo" id="correo" value="<?php echo $correo; ?>">
-
-        <input type="hidden" name="id" value="<?php echo $id; ?>">
-        <input type="submit" name="enviar" value="enviar">
-      </form>
-    </div>
-  <?php
-  }
-  ?>
 </body>
-
 </html>
+<?php } ?>

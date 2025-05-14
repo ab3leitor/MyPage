@@ -20,7 +20,6 @@ $nombreCompleto_db = $_SESSION['nombreCompleto'];
   <title>Menú - Treyak</title>
   <link rel="stylesheet" href="css/sideBar.css">
   <link rel="stylesheet" href="css/HomeContenido.css">
-  <link rel="stylesheet" href="css/InicioStyle.css">
   <link rel="stylesheet" href="css/FooterStyle.css">
   <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
 </head>
@@ -85,13 +84,13 @@ $nombreCompleto_db = $_SESSION['nombreCompleto'];
       <!--Administrador de archivos-->
       <li>
         <!--Redirecion a otra pagina-->
-        <a href="Documentos.php">
+        <a href="Foro.php">
           <!--Icono del item-->
           <i class='bx bxs-folder-open'></i>
           <!--Resalta y ocupa un espacio segun el texto-->
           <span class="links_name">Archivos</span>
         </a>
-        <span class="tooltip">Archivos</span>
+        <span class="tooltip">Foro</span>
       </li>
       <!--Items de la Lista-->
       <li>
@@ -137,195 +136,7 @@ $nombreCompleto_db = $_SESSION['nombreCompleto'];
   <!--Aqui ya comienza el segmento de la pagina-->
   <div class="home_contenido">
     <div class="contenido">
-      <div class="welcome">
-        <h1>Bienvenido de vuelta,
-          <?php echo isset($_SESSION['usuario']) ? $_SESSION['usuario'] : 'Invitado'; ?>
-        </h1>
-        <div class="Profile">
-          <div class="textP">
-            <?php echo htmlspecialchars($nombreCompleto_db); ?>
-          </div>
-          <div class="circleP">
-            <img id="fotoP" src="images/ChatGPT Image 4 abr 2025, 17_29_47.png" alt="">
-          </div>
-        </div>
-      </div>
-      <div class="vistazo">
-        <h3>Echa un vistazo al resumen de hoy: </h3>
-      </div>
 
-      <div class="user-grid-container">
-        <!-- Tarjeta Resumen de Cuenta -->
-        <div class="user-card account-summary">
-          <div class="card-header">
-            <h3>Resumen de Cuenta</h3>
-            <i class="fas fa-user-circle"></i>
-          </div>
-          <div class="card-content">
-            <div class="account-detail">
-              <span class="detail-label">Plan Actual</span>
-              <span class="detail-value premium">Premium</span>
-            </div>
-            <div class="account-detail">
-              <span class="detail-label">Miembro desde</span>
-              <span class="detail-value">Ene 2023</span>
-            </div>
-            <div class="account-detail">
-              <span class="detail-label">Próxima renovación</span>
-              <span class="detail-value">15 Jun 2023</span>
-            </div>
-            <button class="btn upgrade-btn">Mejorar Plan</button>
-          </div>
-        </div>
-
-        <!-- Tarjeta Actividad Reciente -->
-        <div class="user-card recent-activity">
-          <div class="card-header">
-            <h3>Mi Actividad</h3>
-            <i class="fas fa-history"></i>
-          </div>
-          <div class="card-content">
-            <ul class="activity-list">
-              <li>
-                <i class="fas fa-check-circle success"></i>
-                <span>Completaste el curso "Introducción a JavaScript"</span>
-                <span class="activity-time">Hoy, 10:45 AM</span>
-              </li>
-              <li>
-                <i class="fas fa-bookmark warning"></i>
-                <span>Guardaste "Diseño Web Avanzado" para después</span>
-                <span class="activity-time">Ayer, 4:30 PM</span>
-              </li>
-              <li>
-                <i class="fas fa-certificate primary"></i>
-                <span>Obtuviste el badge "Estudiante Activo"</span>
-                <span class="activity-time">2 días atrás</span>
-              </li>
-            </ul>
-            <a href="#" class="view-all">Ver toda mi actividad</a>
-          </div>
-        </div>
-
-        <!-- Tarjeta Progreso -->
-        <div class="user-card progress-card">
-          <div class="card-header">
-            <h3>Mi Progreso</h3>
-            <i class="fas fa-chart-line"></i>
-          </div>
-          <div class="card-content">
-            <div class="progress-item">
-              <div class="progress-info">
-                <span>Cursos completados</span>
-                <span>3/10</span>
-              </div>
-              <div class="progress-bar">
-                <div class="progress-fill" style="width: 30%"></div>
-              </div>
-            </div>
-            <div class="progress-item">
-              <div class="progress-info">
-                <span>Objetivos semanales</span>
-                <span>2/5</span>
-              </div>
-              <div class="progress-bar">
-                <div class="progress-fill" style="width: 40%"></div>
-              </div>
-            </div>
-            <div class="progress-item">
-              <div class="progress-info">
-                <span>Horas de aprendizaje</span>
-                <span>8.5/20</span>
-              </div>
-              <div class="progress-bar">
-                <div class="progress-fill" style="width: 42.5%"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Tarjeta Cursos en Progreso -->
-        <div class="user-card wide-card courses-card">
-          <div class="card-header">
-            <h3>Mis Cursos</h3>
-            <button class="btn outline-btn">Explorar más cursos</button>
-          </div>
-          <div class="card-content">
-            <div class="course-grid">
-              <div class="course-item">
-                <div class="course-thumbnail" style="background-color: #4e73df;"></div>
-                <h4>JavaScript Avanzado</h4>
-                <div class="course-progress">
-                  <div class="progress-bar small">
-                    <div class="progress-fill" style="width: 65%"></div>
-                  </div>
-                  <span>65%</span>
-                </div>
-                <button class="btn continue-btn">Continuar</button>
-              </div>
-              <div class="course-item">
-                <div class="course-thumbnail" style="background-color: #1cc88a;"></div>
-                <h4>Diseño UX/UI</h4>
-                <div class="course-progress">
-                  <div class="progress-bar small">
-                    <div class="progress-fill" style="width: 30%"></div>
-                  </div>
-                  <span>30%</span>
-                </div>
-                <button class="btn continue-btn">Continuar</button>
-              </div>
-              <div class="course-item">
-                <div class="course-thumbnail" style="background-color: #f6c23e;"></div>
-                <h4>Introducción a Python</h4>
-                <div class="course-progress">
-                  <div class="progress-bar small">
-                    <div class="progress-fill" style="width: 10%"></div>
-                  </div>
-                  <span>10%</span>
-                </div>
-                <button class="btn continue-btn">Comenzar</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Tarjeta Notificaciones -->
-        <div class="user-card notifications-card">
-          <div class="card-header">
-            <h3>Notificaciones</h3>
-            <i class="fas fa-bell"></i>
-          </div>
-          <div class="card-content">
-            <div class="notification-item unread">
-              <div class="notification-icon">
-                <i class="fas fa-users"></i>
-              </div>
-              <div class="notification-content">
-                <p>Nuevo mensaje en el foro de JavaScript</p>
-                <span class="notification-time">Hace 2 horas</span>
-              </div>
-            </div>
-            <div class="notification-item">
-              <div class="notification-icon">
-                <i class="fas fa-calendar-alt"></i>
-              </div>
-              <div class="notification-content">
-                <p>Recordatorio: Clase en vivo mañana a las 3 PM</p>
-                <span class="notification-time">Hace 1 día</span>
-              </div>
-            </div>
-            <div class="notification-item">
-              <div class="notification-icon">
-                <i class="fas fa-gift"></i>
-              </div>
-              <div class="notification-content">
-                <p>Nuevo badge disponible: "Estudiante Destacado"</p>
-                <span class="notification-time">Hace 3 días</span>
-              </div>
-            </div>
-            <a href="#" class="view-all">Ver todas las notificaciones</a>
-          </div>
-        </div>
-      </div>
     </div>
       <footer class="user-footer">
         <div class="footer-content">
@@ -370,7 +181,6 @@ $nombreCompleto_db = $_SESSION['nombreCompleto'];
       sidebar.classList.toggle("active");
     }
   </script>
-  <script href="js/CargarDatos.js"></script>
 </body>
 
 
