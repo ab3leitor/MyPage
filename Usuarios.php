@@ -12,7 +12,11 @@ if (!isset($_SESSION['usuario'])) {
 }
 
 include("php/conexion_be.php");
-$sql = "select * from usuario";
+//Verifica que el id exista y se lo paso a una variable
+$usuario_actual_id = isset($_SESSION['id']) ? intval($_SESSION['id']) : 0;
+
+// Consulta excluyendo al usuario actual
+$sql = "SELECT * FROM usuario WHERE id != $usuario_actual_id";
 $resultado = mysqli_query($conexion, $sql);
 ?>
 
@@ -66,7 +70,7 @@ $resultado = mysqli_query($conexion, $sql);
         <i class='bx bx-search'></i>
         <!--Icono del item-->
         <input type="text" placeholder="Search..." name="" value="">
-        <span class="tooltip">Search</span>
+        <span class="tooltipSearch">Search</span>
       </li>
       <div class="divider"></div>
       <!--Items de la Lista-->

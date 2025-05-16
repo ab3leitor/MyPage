@@ -20,6 +20,7 @@ $nombreCompleto_db = $_SESSION['nombreCompleto'];
   <title>Menú - Treyak</title>
   <link rel="stylesheet" href="css/sideBar.css">
   <link rel="stylesheet" href="css/HomeContenido.css">
+  <link rel="stylesheet" href="css/AyudaStyle.css">
   <link rel="stylesheet" href="css/FooterStyle.css">
   <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
 </head>
@@ -46,7 +47,7 @@ $nombreCompleto_db = $_SESSION['nombreCompleto'];
         <i class='bx bx-search'></i>
         <!--Icono del item-->
         <input type="text" placeholder="Search..." name="" value="">
-        <span class="tooltip">Search</span>
+        <span class="tooltipSearch">Search</span>
       </li>
       <div class="divider"></div>
       <!--Items de la Lista-->
@@ -136,38 +137,171 @@ $nombreCompleto_db = $_SESSION['nombreCompleto'];
   <!--Aqui ya comienza el segmento de la pagina-->
   <div class="home_contenido">
     <div class="contenido">
+      <div class="contenido">
+        <div class="ayuda-container">
+          <h1 class="ayuda-titulo"><i class='bx bxs-help-circle'></i> Centro de Ayuda</h1>
 
-    </div>
-      <footer class="user-footer">
-        <div class="footer-content">
-          <div class="footer-links">
-            <a href="#" class="footer-link">Inicio</a>
-            <a href="#" class="footer-link">Términos</a>
-            <a href="#" class="footer-link">Privacidad</a>
-            <a href="#" class="footer-link">Contacto</a>
+          <div class="ayuda-seccion">
+            <h2>Preguntas Frecuentes</h2>
+            <div class="faq-container">
+              <div class="faq-item">
+                <div class="faq-pregunta">
+                  <span>¿Cómo cambio mi contraseña?</span>
+                  <i class='bx bx-chevron-down'></i>
+                </div>
+                <div class="faq-respuesta">
+                  <p>Puedes cambiar tu contraseña en la sección de Configuración > Seguridad. Necesitarás ingresar tu contraseña actual antes de establecer una nueva.</p>
+                </div>
+              </div>
+
+              <div class="faq-item">
+                <div class="faq-pregunta">
+                  <span>¿Cómo envío un mensaje a otro usuario?</span>
+                  <i class='bx bx-chevron-down'></i>
+                </div>
+                <div class="faq-respuesta">
+                  <p>Dirígete a la sección de Mensajes, selecciona el usuario con quien deseas comunicarte y escribe tu mensaje en el campo correspondiente.</p>
+                </div>
+              </div>
+
+              <div class="faq-item">
+                <div class="faq-pregunta">
+                  <span>¿Cómo participo en los foros?</span>
+                  <i class='bx bx-chevron-down'></i>
+                </div>
+                <div class="faq-respuesta">
+                  <p>En la sección Foros puedes ver todos los hilos disponibles. Haz clic en uno para ver su contenido y usar el campo de texto al final para agregar tu respuesta.</p>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <div class="footer-social">
-            <a href="#" class="social-icon" title="Facebook">
-              <i class='bx bxl-facebook' style='color:#fffafa'  ></i>
-            </a>
-            <a href="#" class="social-icon" title="Twitter">
-              <i class='bx bxl-twitter' style='color:#fffafa' ></i>
-            </a>
-            <a href="#" class="social-icon" title="Instagram">
-              <i class='bx bxl-instagram' style='color:#fffafa' ></i>
-            </a>
-            <a href="#" class="social-icon" title="LinkedIn">
-              <i class='bx bxl-linkedin' style='color:#fffafa' ></i>
-            </a>
-            <a href="#" class="social-icon" title="Whatsapp">
-              <i class='bx bxl-whatsapp' style='color:#fffafa' ></i>
-            </a>
+          <div class="ayuda-seccion">
+            <h2>Guías y Tutoriales</h2>
+            <div class="guias-container">
+              <div class="guia-card">
+                <i class='bx bxs-videos'></i>
+                <h3>Video Tutoriales</h3>
+                <p>Aprende a usar todas las funciones con nuestros videos explicativos.</p>
+                <button class="btn-ver">Ver Tutoriales</button>
+              </div>
+
+              <div class="guia-card">
+                <i class='bx bxs-book'></i>
+                <h3>Manual de Usuario</h3>
+                <p>Descarga el manual completo con todas las funcionalidades.</p>
+                <button class="btn-ver">Descargar PDF</button>
+              </div>
+
+              <div class="guia-card">
+                <i class='bx bxs-walk'></i>
+                <h3>Guía Rápida</h3>
+                <p>Una introducción rápida para empezar a usar la plataforma.</p>
+                <button class="btn-ver">Comenzar</button>
+              </div>
+            </div>
           </div>
 
-          <p class="footer-copyright">© 2023 NombreApp. Todos los derechos reservados.</p>
+          <div class="ayuda-seccion">
+            <h2>Contacto</h2>
+            <div class="contacto-container">
+              <div class="contacto-info">
+                <div class="info-item">
+                  <i class='bx bxs-envelope'></i>
+                  <div>
+                    <h3>Correo Electrónico</h3>
+                    <p>soporte@treyak.com</p>
+                  </div>
+                </div>
+
+                <div class="info-item">
+                  <i class='bx bxs-phone'></i>
+                  <div>
+                    <h3>Teléfono</h3>
+                    <p>+56 9 1234 5678</p>
+                    <p>Lunes a Viernes, 9:00 - 18:00 hrs</p>
+                  </div>
+                </div>
+
+                <div class="info-item">
+                  <i class='bx bxs-map'></i>
+                  <div>
+                    <h3>Oficinas</h3>
+                    <p>Av. Principal 1234, Santiago, Chile</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="contacto-formulario">
+                <h3>Envíanos un mensaje</h3>
+                <form id="form-contacto">
+                  <div class="form-group">
+                    <label for="contacto-nombre">Nombre</label>
+                    <input type="text" id="contacto-nombre" value="<?php echo htmlspecialchars($nombreCompleto_db); ?>" required>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="contacto-email">Correo Electrónico</label>
+                    <input type="email" id="contacto-email" required>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="contacto-asunto">Asunto</label>
+                    <select id="contacto-asunto" required>
+                      <option value="">Selecciona un asunto</option>
+                      <option value="problema">Problema técnico</option>
+                      <option value="pregunta">Pregunta general</option>
+                      <option value="sugerencia">Sugerencia</option>
+                      <option value="otro">Otro</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="contacto-mensaje">Mensaje</label>
+                    <textarea id="contacto-mensaje" rows="5" required></textarea>
+                  </div>
+
+                  <button type="submit" class="btn-enviar">
+                    <i class='bx bx-send'></i> Enviar Mensaje
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
         </div>
-      </footer>
+      </div>
+      <script src="js/Ayuda.js"></script>
+    </div>
+    <footer class="user-footer">
+      <div class="footer-content">
+        <div class="footer-links">
+          <a href="#" class="footer-link">Inicio</a>
+          <a href="#" class="footer-link">Términos</a>
+          <a href="#" class="footer-link">Privacidad</a>
+          <a href="#" class="footer-link">Contacto</a>
+        </div>
+
+        <div class="footer-social">
+          <a href="#" class="social-icon" title="Facebook">
+            <i class='bx bxl-facebook' style='color:#fffafa'></i>
+          </a>
+          <a href="#" class="social-icon" title="Twitter">
+            <i class='bx bxl-twitter' style='color:#fffafa'></i>
+          </a>
+          <a href="#" class="social-icon" title="Instagram">
+            <i class='bx bxl-instagram' style='color:#fffafa'></i>
+          </a>
+          <a href="#" class="social-icon" title="LinkedIn">
+            <i class='bx bxl-linkedin' style='color:#fffafa'></i>
+          </a>
+          <a href="#" class="social-icon" title="Whatsapp">
+            <i class='bx bxl-whatsapp' style='color:#fffafa'></i>
+          </a>
+        </div>
+
+        <p class="footer-copyright">© 2023 NombreApp. Todos los derechos reservados.</p>
+      </div>
+    </footer>
   </div>
   <script>
     let btn = document.querySelector("#btn");

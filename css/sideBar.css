@@ -11,8 +11,12 @@
   background: #11101d;
   padding: 6 px 14 px;
   transition: all 0.5s ease;
-  border-top-right-radius: 15px;  /* Radio superior derecho */
-  border-bottom-right-radius: 15px; /* Radio inferior derecho */
+  border-top-right-radius: 15px;
+  /* Radio superior derecho */
+  border-bottom-right-radius: 15px;
+  /* Radio inferior derecho */
+  z-index: 1000;
+  /* Asegura que el sidebar esté sobre todo */
 }
 
 .sidebar.active {
@@ -56,6 +60,7 @@
   text-align: center;
   line-height: 50px;
   transform: translateX(-50%);
+  cursor: pointer;
 }
 
 .sidebar.active #btn {
@@ -63,42 +68,58 @@
 }
 
 .sidebar.active ul {
- align-content: center;  
- margin-left: 3%;
+  align-content: center;
+  margin-left: 3%;
 }
-.sidebar ul{
+
+.sidebar ul {
   display: flex;
   flex-direction: column;
-  gap: 10px; /* Espacio uniforme entre elementos li */
-  padding: 0 8px; /* Ajuste opcional para alineación */
+  gap: 10px;
+  /* Espacio uniforme entre elementos li */
+  padding: 0 8px;
+  /* Ajuste opcional para alineación */
 }
 
 .sidebar ul li {
   position: relative;
   height: 50px;
   width: 100%;
-  margin: 0; /* Resetea márgenes si usas gap */
+  margin: 0;
+  /* Resetea márgenes si usas gap */
   list-style: none;
   line-height: 50px;
-  
+
 }
 
 .sidebar ul li .tooltip {
   position: absolute;
-  left: 122px;
+  left: 220%;
+  margin-left: 15px;
+  color: white;
   top: 0;
   transform: translate(-50%, -50%);
   border-radius: 6px;
   height: 35px;
   width: 122px;
-  background: #fff;
+  background: #11101d;
   line-height: 35px;
   text-align: center;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
   transition: 0s;
   opacity: 0;
   pointer-events: none;
   display: block;
+  z-index: 1001;
+  white-space: nowrap;
+
+  /* Efecto neón verde */
+  border: 1px solid #fe9bf6;
+  box-shadow:
+    0 0 5px #2ecc71,
+    0 0 10px #2ecc71,
+    inset 0 0 5px #2ecc71;
+  text-shadow: 0 0 5px #2ecc71;
+  animation: neon-pulse 1.5s infinite alternate;
 }
 
 .sidebar.active ul li .tooltip {
@@ -110,8 +131,10 @@
   opacity: 1;
   top: 50%;
 }
+
 .sidebar ul li:first-child {
-  margin-top: 0; /* Elimina margen superior del buscador */
+  margin-top: 0;
+  /* Elimina margen superior del buscador */
 }
 
 .sidebar ul li input {
@@ -129,9 +152,21 @@
   color: #fff;
   transition: all 0.3s ease;
 }
+
 .sidebar ul li input:focus {
-  background: #2a2845;
+  background: #ffffff;
+  color: #1d1b31;
   left: 2%;
+  /* Efecto neón verde */
+  border: 1px solid #0176e4;
+  outline: 1px solid #2ecc71;
+  outline-offset: 2px;
+  box-shadow:
+    0 0 5px #0176e4,
+    0 0 10px #2ecc71,
+    inset 0 0 5px #2ecc71;
+  text-shadow: 0 0 5px #2ecc71;
+  animation: neon-pulse 1.5s infinite alternate;
 }
 
 .sidebar.active ul li input {
@@ -146,11 +181,64 @@
   transition: all 0.5 ease;
 }
 
+.sidebar.active ul li .bx-search {
+  pointer-events: none;
+
+}
+
 .sidebar ul li .bx-search:hover {
+  opacity: 1;
+  border-color: #017ee4 !important;
+  box-shadow:
+    0 0 5px #017ee4,
+    0 0 10px #017ee4,
+    inset 0 0 5px #017ee4 !important;
+  animation: neon-pulse 1.5s infinite alternate;
   background: #fff;
   color: #1d1b31;
 }
-.sidebar.active ul li .bx-search:hover{
+
+.sidebar ul li .tooltipSearch {
+  position: absolute;
+  left: 220%;
+  margin-left: 15px;
+  color: white;
+  top: 0;
+  transform: translate(-50%, -50%);
+  border-radius: 6px;
+  height: 35px;
+  width: 122px;
+  background: #11101d;
+  line-height: 35px;
+  text-align: center;
+  transition: 0s;
+  opacity: 0;
+  pointer-events: none;
+  display: block;
+  z-index: 1001;
+  white-space: nowrap;
+
+  /* Efecto neón azul */
+  border: 1px solid #017ee4 !important;
+  box-shadow:
+    0 0 5px #017ee4,
+    0 0 10px #017ee4,
+    inset 0 0 5px #017ee4 !important;
+  text-shadow: 0 0 5px #017ee4 !important;
+  animation: neon-pulse 1.5s infinite alternate;
+}
+
+.sidebar.active ul li .tooltipSearch {
+  display: none;
+}
+
+.sidebar ul li:hover .tooltipSearch {
+  transition: all 0.5s ease;
+  opacity: 1;
+  top: 50%;
+}
+
+.sidebar.active ul li .bx-search:hover {
   background: #1d1b31;
   color: hsl(0, 0%, 100%);
 }
@@ -171,12 +259,21 @@
 }
 
 .sidebar ul li a:hover {
+  opacity: 1;
+  border-color: #a29bfe;
+  box-shadow:
+    0 0 5px #a29bfe,
+    0 0 10px #a29bfe,
+    inset 0 0 5px #a29bfe;
+  animation: neon-pulse 1.5s infinite alternate;
   color: #11101d;
   background: #fff;
-  
-  transform: translateY(-2px); /* Efecto sutil de elevación */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Opcional: sombra para profundidad */
+
+  transform: translateY(-2px);
+  /* Efecto sutil de elevación */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
+
 
 .sidebar ul li i {
   height: 50px;
@@ -184,6 +281,15 @@
   border-radius: 12px;
   line-height: 50px;
   text-align: center;
+  cursor: pointer;
+  transition: transform 0.2s, color 0.2s;
+}
+
+.sidebar ul li i:hover {
+  transform: translateY(-2px);
+  /* Levanta ligeramente el ícono */
+  color: #2ecc71;
+  /* Verde moderno */
 }
 
 .sidebar .links_name {
@@ -260,11 +366,53 @@
   font-size: 20px;
   border-radius: 12px;
   text-align: center;
-  color: #fff;
-  transition: all 0.3s ease;
-  background: #1d1b31;
+  color: #ff0000;
+  background:(255, 0, 0) #1d1b31;
+  
+  /* Efecto neón rojo/amarillo de advertencia */
+  border: 1px solid #ff5555; /* Rojo neón */
+  animation: neon-warning-pulse 3.5s infinite ease-in-out;
 }
-.sidebar.active .perfil #log_out{
+
+@keyframes neon-warning-pulse {
+  0%, 100% {
+    opacity: 1;
+    box-shadow:
+      0 0 10px #ff5555,       /* Rojo */
+      0 0 25px #ffaa00,       /* Amarillo */
+      inset 0 0 10px #ff3333; /* Rojo más intenso */
+    text-shadow: 0 0 10px #ff5555;
+  }
+  50% {
+    opacity: 0.3;
+    box-shadow:
+      0 0 5px #ff5555,
+      0 0 10px #ffaa00,
+      inset 0 0 5px #ff3333;
+    text-shadow: 0 0 5px #ff5555;
+  }
+}
+
+/* Versión para sidebar activo */
+.sidebar.active .perfil #log_out {
+  left: 88%;
+  animation: none; /* Elimina la animación */
+  border: 1px solid #ff00008c;
+  box-shadow: 
+    0 0 15px #ff00008c,
+    inset 0 0 10px #ff00008c;
+  text-shadow: 0 0 10px #ff00008c;
+  opacity: 1; /* Fija opacidad máxima */
+}
+
+/* Efecto hover opcional */
+.perfil #log_out:hover {
+  box-shadow: 
+    0 0 20px #ff00008c,
+    inset 0 0 15px #ff00008c;
+}
+
+.sidebar.active .perfil #log_out {
   position: absolute;
   bottom: 5px;
   left: 47%;
@@ -288,13 +436,34 @@
   height: 1px;
   width: 70%;
   margin: 2px auto;
-  background: rgba(255, 255, 255, 0.2); /* Color claro con transparencia */
+  background: rgba(255, 255, 255, 0.2);
+  /* Color claro con transparencia */
   transition: all 0.5s ease;
 }
 
 .sidebar.active ul .divider {
-  width: 90%; /* Ajuste cuando el sidebar está expandido */
+  width: 90%;
+  /* Ajuste cuando el sidebar está expandido */
 }
-.sidebar ul li:hover + .divider {
+
+.sidebar ul li:hover+.divider {
   background: rgba(255, 255, 255, 0.4);
+}
+
+@keyframes neon-pulse {
+  from {
+    box-shadow:
+      0 0 5px #a29bfe,
+      0 0 10px #a29bfe,
+      inset 0 0 5px #a29bfe;
+    text-shadow: 0 0 5px #a29bfe;
+  }
+
+  to {
+    box-shadow:
+      0 0 10px #a29bfe,
+      0 0 20px #a29bfe,
+      inset 0 0 10px #a29bfe;
+    text-shadow: 0 0 10px #a29bfe;
+  }
 }

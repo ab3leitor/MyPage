@@ -46,7 +46,7 @@ if (!isset($_SESSION['usuario'])) {
         <i class='bx bx-search'></i>
         <!--Icono del item-->
         <input type="text" placeholder="Search..." name="" value="">
-        <span class="tooltip">Search</span>
+        <span class="tooltipSearch">Search</span>
       </li>
       <div class="divider"></div>
       <!--Items de la Lista-->
@@ -219,6 +219,18 @@ if (!isset($_SESSION['usuario'])) {
     </footer>
   </div>
   <script>
+    //Funcion para activar el desplzamiento del sideBar
+    let btn = document.querySelector("#btn");
+    let sidebar = document.querySelector(".sidebar");
+    let searchBtn = document.querySelector(".bx-search");
+
+    btn.onclick = function() {
+      sidebar.classList.toggle("active");
+    }
+    searchBtn.onclick = function() {
+      sidebar.classList.toggle("active");
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
       const userId = <?php echo $_SESSION['id']; ?>;
       let currentChat = null;
@@ -686,4 +698,5 @@ if (!isset($_SESSION['usuario'])) {
     });
   </script>
 </body>
+
 </html>

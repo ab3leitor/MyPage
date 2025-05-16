@@ -20,6 +20,7 @@ $nombreCompleto_db = $_SESSION['nombreCompleto'];
   <title>Menú - Treyak</title>
   <link rel="stylesheet" href="css/sideBar.css">
   <link rel="stylesheet" href="css/HomeContenido.css">
+  <link rel="stylesheet" href="css/ConfiguracionStyle.css">
   <link rel="stylesheet" href="css/FooterStyle.css">
   <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
 </head>
@@ -46,7 +47,7 @@ $nombreCompleto_db = $_SESSION['nombreCompleto'];
         <i class='bx bx-search'></i>
         <!--Icono del item-->
         <input type="text" placeholder="Search..." name="" value="">
-        <span class="tooltip">Search</span>
+        <span class="tooltipSearch">Search</span>
       </li>
       <div class="divider"></div>
       <!--Items de la Lista-->
@@ -136,39 +137,121 @@ $nombreCompleto_db = $_SESSION['nombreCompleto'];
   <!--Aqui ya comienza el segmento de la pagina-->
   <div class="home_contenido">
     <div class="contenido">
+      <div class="contenido">
+        <div class="configuracion-container">
+          <h1 class="configuracion-titulo">Configuración de Cuenta</h1>
 
-    </div>
-      <footer class="user-footer">
-        <div class="footer-content">
-          <div class="footer-links">
-            <a href="#" class="footer-link">Inicio</a>
-            <a href="#" class="footer-link">Términos</a>
-            <a href="#" class="footer-link">Privacidad</a>
-            <a href="#" class="footer-link">Contacto</a>
+          <div class="configuracion-seccion">
+            <h2><i class='bx bxs-user-detail'></i> Información Personal</h2>
+            <div class="configuracion-formulario">
+              <div class="form-group">
+                <label for="nombre">Nombre Completo</label>
+                <input type="text" id="nombre" value="<?php echo htmlspecialchars($nombreCompleto_db); ?>" readonly>
+              </div>
+              <div class="form-group">
+                <label for="usuario">Nombre de Usuario</label>
+                <input type="text" id="usuario" value="<?php echo htmlspecialchars($_SESSION['usuario']); ?>" readonly>
+              </div>
+              <div class="form-group">
+                <label for="email">Correo Electrónico</label>
+                <input type="email" id="email" value="<?php echo htmlspecialchars($_SESSION['correo'] ?? ''); ?>">
+                <button class="btn-editar"><i class='bx bx-edit'></i> Actualizar</button>
+              </div>
+            </div>
           </div>
 
-          <div class="footer-social">
-            <a href="#" class="social-icon" title="Facebook">
-              <i class='bx bxl-facebook' style='color:#fffafa'  ></i>
-            </a>
-            <a href="#" class="social-icon" title="Twitter">
-              <i class='bx bxl-twitter' style='color:#fffafa' ></i>
-            </a>
-            <a href="#" class="social-icon" title="Instagram">
-              <i class='bx bxl-instagram' style='color:#fffafa' ></i>
-            </a>
-            <a href="#" class="social-icon" title="LinkedIn">
-              <i class='bx bxl-linkedin' style='color:#fffafa' ></i>
-            </a>
-            <a href="#" class="social-icon" title="Whatsapp">
-              <i class='bx bxl-whatsapp' style='color:#fffafa' ></i>
-            </a>
+          <div class="configuracion-seccion">
+            <h2><i class='bx bxs-lock-alt'></i> Seguridad</h2>
+            <div class="configuracion-formulario">
+              <div class="form-group">
+                <label for="password-actual">Contraseña Actual</label>
+                <input type="password" id="password-actual" placeholder="Ingresa tu contraseña actual">
+              </div>
+              <div class="form-group">
+                <label for="password-nueva">Nueva Contraseña</label>
+                <input type="password" id="password-nueva" placeholder="Ingresa tu nueva contraseña">
+              </div>
+              <div class="form-group">
+                <label for="password-confirmar">Confirmar Contraseña</label>
+                <input type="password" id="password-confirmar" placeholder="Confirma tu nueva contraseña">
+              </div>
+              <button class="btn-guardar"><i class='bx bx-save'></i> Cambiar Contraseña</button>
+            </div>
           </div>
 
-          <p class="footer-copyright">© 2023 NombreApp. Todos los derechos reservados.</p>
+          <div class="configuracion-seccion">
+            <h2><i class='bx bxs-bell'></i> Notificaciones</h2>
+            <div class="configuracion-opciones">
+              <div class="opcion-notificacion">
+                <input type="checkbox" id="notif-email" checked>
+                <label for="notif-email">Recibir notificaciones por correo</label>
+              </div>
+              <div class="opcion-notificacion">
+                <input type="checkbox" id="notif-mensajes" checked>
+                <label for="notif-mensajes">Notificaciones de mensajes nuevos</label>
+              </div>
+              <div class="opcion-notificacion">
+                <input type="checkbox" id="notif-foro">
+                <label for="notif-foro">Notificaciones de actividad en foros</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="configuracion-seccion">
+            <h2><i class='bx bxs-image'></i> Foto de Perfil</h2>
+            <div class="foto-perfil-container">
+              <div class="foto-perfil-preview">
+                <img src="images/perfil.jpg" alt="Foto de perfil actual" id="foto-preview">
+              </div>
+              <div class="foto-perfil-acciones">
+                <input type="file" id="foto-input" accept="image/*" style="display: none;">
+                <button class="btn-subir" onclick="document.getElementById('foto-input').click()">
+                  <i class='bx bx-upload'></i> Subir Nueva Foto
+                </button>
+                <button class="btn-eliminar"><i class='bx bx-trash'></i> Eliminar Foto</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="configuracion-acciones">
+            <button class="btn-eliminar-cuenta"><i class='bx bx-trash'></i> Eliminar Cuenta</button>
+            <button class="btn-cerrar-sesion"><i class='bx bx-log-out'></i> Cerrar Sesión</button>
+          </div>
         </div>
-      </footer>
+      </div>
+    </div>
+    <footer class="user-footer">
+      <div class="footer-content">
+        <div class="footer-links">
+          <a href="#" class="footer-link">Inicio</a>
+          <a href="#" class="footer-link">Términos</a>
+          <a href="#" class="footer-link">Privacidad</a>
+          <a href="#" class="footer-link">Contacto</a>
+        </div>
+
+        <div class="footer-social">
+          <a href="#" class="social-icon" title="Facebook">
+            <i class='bx bxl-facebook' style='color:#fffafa'></i>
+          </a>
+          <a href="#" class="social-icon" title="Twitter">
+            <i class='bx bxl-twitter' style='color:#fffafa'></i>
+          </a>
+          <a href="#" class="social-icon" title="Instagram">
+            <i class='bx bxl-instagram' style='color:#fffafa'></i>
+          </a>
+          <a href="#" class="social-icon" title="LinkedIn">
+            <i class='bx bxl-linkedin' style='color:#fffafa'></i>
+          </a>
+          <a href="#" class="social-icon" title="Whatsapp">
+            <i class='bx bxl-whatsapp' style='color:#fffafa'></i>
+          </a>
+        </div>
+
+        <p class="footer-copyright">© 2023 NombreApp. Todos los derechos reservados.</p>
+      </div>
+    </footer>
   </div>
+  <script src="js/Configuracion.js"></script>
   <script>
     let btn = document.querySelector("#btn");
     let sidebar = document.querySelector(".sidebar");

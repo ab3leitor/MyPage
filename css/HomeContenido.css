@@ -32,10 +32,11 @@ body::before {
 
 .home_contenido {
     position: relative;
-    min-height: 147vh;
+    min-height: 185vh;
     width: calc(100% - 140px);
     left: 78px;
     transition: all 0.5s ease;
+    z-index: 1;
 }
 
 .home_contenido .text {

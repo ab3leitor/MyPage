@@ -47,7 +47,7 @@ $nombreCompleto_db = $_SESSION['nombreCompleto'];
         <i class='bx bx-search'></i>
         <!--Icono del item-->
         <input type="text" placeholder="Search..." name="" value="">
-        <span class="tooltip">Search</span>
+        <span class="tooltipSearch">Search</span>
       </li>
       <div class="divider"></div>
       <!--Items de la Lista-->
