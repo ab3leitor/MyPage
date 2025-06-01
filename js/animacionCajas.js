@@ -59,3 +59,25 @@ function register() {
         caja_trasera_login.style.opacity = "1";
     }
 }
+
+// Cierra los mensajes de error al hacer clic
+document.addEventListener('DOMContentLoaded', function() {
+    const errorMessages = document.querySelectorAll('.error-message');
+    
+    errorMessages.forEach(message => {
+        message.addEventListener('click', () => {
+            message.style.animation = 'fadeOut 0.3s ease-out';
+            setTimeout(() => {
+                message.remove();
+            }, 300);
+        });
+        
+        // Auto-ocultar después de 5 segundos
+        setTimeout(() => {
+            message.style.animation = 'fadeOut 0.3s ease-out';
+            setTimeout(() => {
+                message.remove();
+            }, 300);
+        }, 5000);
+    });
+});

@@ -1,60 +1,36 @@
 <?php
+include 'conexion_be.php';
 
-  include 'conexion_be.php';
+// Obtener datos del formulario
+$nombreCompleto = $_POST['nombreCompleto'];
+$correo = $_POST['correo'];
+$usuario = $_POST['usuario'];
+$llave = hash('sha512', $_POST['llave']);
+$avatar = $_POST['avatar'] ?? 'default.png'; // Valor por defecto
 
-  $nombreCompleto = $_POST['nombreCompleto'];
-  $correo =  $_POST['correo'];
-  $usuario = $_POST['usuario'];
-  $llave =   $_POST['llave'];
-  //Encriptar contraseña
-  $llave = hash('sha512', $llave);
-
-  $query =  "INSERT INTO usuario(nombreCompleto, correoElectronico, usuario, llave)
-             VALUES('$nombreCompleto','$correo','$usuario','$llave')";
-
-
-
-  //Verificar que el correo no se repita
-  $verificar_correo = mysqli_query($conexion, "SELECT * FROM usuario WHERE correoElectronico = '$correo' ");
-  if(mysqli_num_rows($verificar_correo) > 0 ) {
-    echo'
-      <script>
-      alert("Este correo ya se encuentra registrado");
-      window.location = "../index.php";
-      </script>
-    ';
+// Verificar correo
+$verificar_correo = mysqli_query($conexion, "SELECT * FROM usuario WHERE correoElectronico = '$correo'");
+if(mysqli_num_rows($verificar_correo) > 0) {
+    header("Location: ../index.php?error=correo_existente");
     exit();
-  }
-  //Verificar que el usuario no se repita
-  $verificar_usuario = mysqli_query($conexion, "SELECT * FROM usuario WHERE usuario ='$usuario'");
-  if (mysqli_num_rows($verificar_usuario) > 0 ) {
-    echo'
-      <script>
-      alert("Este usuario ya se encuentra registrado");
-      window.location = "../index.php";
-      </script>
-    ';
+}
+
+// Verificar usuario
+$verificar_usuario = mysqli_query($conexion, "SELECT * FROM usuario WHERE usuario = '$usuario'");
+if(mysqli_num_rows($verificar_usuario) > 0) {
+    header("Location: ../index.php?error=usuario_existente");
     exit();
-  }
+}
 
+// Insertar nuevo usuario
+$query = "INSERT INTO usuario(nombreCompleto, correoElectronico, usuario, llave, avatar) 
+          VALUES('$nombreCompleto', '$correo', '$usuario', '$llave', '$avatar')";
 
-  //Almacenar un usuario
-  $ejecutar = mysqli_query($conexion, $query);
+if(mysqli_query($conexion, $query)) {
+    header("Location: ../index.php?success=registro_exitoso");
+} else {
+    header("Location: ../index.php?error=registro_fallido");
+}
 
-  if ($ejecutar) {
-      echo '
-      <script>
-        alert("Usuario almacenado exitosamente");
-        window.location = "../index.php";
-      </script>
-      ';
-  }else {
-    echo '
-      <script>
-        alert("Usuario no se ha podido almacenar exitosamente");
-        window.location = "../index.php";
-      </script>
-    ';
-    }
-    mysqli_close($conexion);
+mysqli_close($conexion);
 ?>
